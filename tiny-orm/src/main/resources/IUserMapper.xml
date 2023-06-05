@@ -1,0 +1,9 @@
+<mapper namespace="com.gjw.mapper.IUserMapper">
+
+    <select id="queryUserName" parameterType="java.lang.String" resultType="java.lang.String">
+        SELECT username
+        FROM user
+        where id = #{id}
+    </select>
+
+</mapper>
