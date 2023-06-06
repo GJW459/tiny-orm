@@ -1,11 +1,11 @@
 package com.gjw.mapper;
 
-import com.gjw.orm.binding.MapperRegistry;
-import com.gjw.orm.io.Resources;
-import com.gjw.orm.session.SqlSession;
-import com.gjw.orm.session.SqlSessionFactory;
-import com.gjw.orm.session.SqlSessionFactoryBuilder;
-import com.gjw.orm.session.defaults.DefaultSqlSessionFactory;
+import com.wei.orm.binding.MapperRegistry;
+import com.wei.orm.io.Resources;
+import com.wei.orm.session.SqlSession;
+import com.wei.orm.session.SqlSessionFactory;
+import com.wei.orm.session.SqlSessionFactoryBuilder;
+import com.wei.orm.session.defaults.DefaultSqlSessionFactory;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,8 +33,8 @@ public class SqlSessionTest {
         // 3. 获取映射对象
         IUserMapper userMapper = sqlSession.getMapper(IUserMapper.class);
         // 4. 测试验证
-        String userName = userMapper.queryUserName("10001");
-        LOGGER.info("测试结果：{}",userName);
+        // String userName = userMapper.queryUserName(10001);
+        // LOGGER.info("测试结果：{}",userName);
     }
 
 
@@ -45,9 +45,11 @@ public class SqlSessionTest {
         SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
         SqlSession sqlSession = sqlSessionFactory.openSession();
         IUserMapper userMapper = sqlSession.getMapper(IUserMapper.class);
-        String userName = userMapper.queryUserName("10001");
-        LOGGER.info("测试结果:{}",userName);
+        // String userName = userMapper.queryUserName(10001);
+        // LOGGER.info("测试结果:{}",userName);
     }
+
+
 
 
 

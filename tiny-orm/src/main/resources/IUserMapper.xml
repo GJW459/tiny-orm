@@ -1,7 +1,7 @@
 <mapper namespace="com.gjw.mapper.IUserMapper">
 
-    <select id="queryUserName" parameterType="java.lang.String" resultType="java.lang.String">
-        SELECT username
+    <select id="queryUserById" parameterType="java.lang.Integer" resultType="com.gjw.mapper.User">
+        SELECT id,name,age
         FROM user
         where id = #{id}
     </select>

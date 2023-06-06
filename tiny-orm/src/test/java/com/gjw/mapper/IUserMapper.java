@@ -5,7 +5,7 @@ package com.gjw.mapper;
  */
 public interface IUserMapper {
 
-    String queryUserName(String uId);
+    User queryUserById(Integer uId);
 
     Integer queryUserAge(String uId);
 }
