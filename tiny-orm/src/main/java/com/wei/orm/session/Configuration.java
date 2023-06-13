@@ -2,6 +2,8 @@ package com.wei.orm.session;
 
 import com.wei.orm.binding.MapperRegistry;
 import com.wei.orm.datasource.druid.DruidDataSourceFactory;
+import com.wei.orm.datasource.pooled.PooledDataSourceFactory;
+import com.wei.orm.datasource.unpooled.UnPooledDataSourceFactory;
 import com.wei.orm.mapping.Environment;
 import com.wei.orm.mapping.MapperStatement;
 import com.wei.orm.transaction.jdbc.JdbcTransactionFactory;
@@ -40,6 +42,8 @@ public class Configuration {
     public Configuration() {
         typeAliasRegistry.registerAlias("JDBC",JdbcTransactionFactory.class);
         typeAliasRegistry.registerAlias("DRUID", DruidDataSourceFactory.class);
+        typeAliasRegistry.registerAlias("UNPOOLED", UnPooledDataSourceFactory.class);
+        typeAliasRegistry.registerAlias("POOLED", PooledDataSourceFactory.class);
     }
 
     public void addMappers(final String packageName) {

@@ -2,7 +2,6 @@ package com.wei.orm.builder.xml;
 
 import com.wei.orm.builder.BaseBuilder;
 import com.wei.orm.datasource.DataSourceFactory;
-import com.wei.orm.datasource.druid.DruidDataSourceFactory;
 import com.wei.orm.io.Resources;
 import com.wei.orm.mapping.BoundSql;
 import com.wei.orm.mapping.Environment;
@@ -10,7 +9,6 @@ import com.wei.orm.mapping.MapperStatement;
 import com.wei.orm.mapping.SqlCommandType;
 import com.wei.orm.session.Configuration;
 import com.wei.orm.transaction.TransactionFactory;
-import com.wei.orm.transaction.jdbc.JdbcTransactionFactory;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.Element;
