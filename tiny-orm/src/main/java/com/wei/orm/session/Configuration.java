@@ -4,8 +4,16 @@ import com.wei.orm.binding.MapperRegistry;
 import com.wei.orm.datasource.druid.DruidDataSourceFactory;
 import com.wei.orm.datasource.pooled.PooledDataSourceFactory;
 import com.wei.orm.datasource.unpooled.UnPooledDataSourceFactory;
+import com.wei.orm.executor.Executor;
+import com.wei.orm.executor.SimpleExecutor;
+import com.wei.orm.executor.resultset.DefaultResultSetHandler;
+import com.wei.orm.executor.resultset.ResultSetHandler;
+import com.wei.orm.executor.statement.PreparedStatementHandler;
+import com.wei.orm.executor.statement.StatementHandler;
+import com.wei.orm.mapping.BoundSql;
 import com.wei.orm.mapping.Environment;
 import com.wei.orm.mapping.MapperStatement;
+import com.wei.orm.transaction.Transaction;
 import com.wei.orm.transaction.jdbc.JdbcTransactionFactory;
 import com.wei.orm.type.TypeAliasRegistry;
 
@@ -40,7 +48,7 @@ public class Configuration {
     protected final TypeAliasRegistry typeAliasRegistry = new TypeAliasRegistry();
 
     public Configuration() {
-        typeAliasRegistry.registerAlias("JDBC",JdbcTransactionFactory.class);
+        typeAliasRegistry.registerAlias("JDBC", JdbcTransactionFactory.class);
         typeAliasRegistry.registerAlias("DRUID", DruidDataSourceFactory.class);
         typeAliasRegistry.registerAlias("UNPOOLED", UnPooledDataSourceFactory.class);
         typeAliasRegistry.registerAlias("POOLED", PooledDataSourceFactory.class);
@@ -80,5 +88,26 @@ public class Configuration {
 
     public Environment getEnvironment() {
         return environment;
+    }
+
+    /**
+     * 创建结果集处理器
+     */
+    public ResultSetHandler newResultSetHandler(Executor executor, MapperStatement mapperStatement, BoundSql boundSql) {
+        return new DefaultResultSetHandler(executor, mapperStatement, boundSql);
+    }
+
+    /**
+     * 创建语句处理器
+     */
+    public StatementHandler newStatement(Executor executor, MapperStatement ms, Object parameter, ResultHandler resultHandler, BoundSql boundSql) {
+        return new PreparedStatementHandler(executor, ms, parameter, resultHandler, boundSql);
+    }
+
+    /**
+     * 生产执行器
+     */
+    public Executor newExecutor(Transaction transaction) {
+        return new SimpleExecutor(this, transaction);
     }
 }

@@ -57,4 +57,14 @@ public class ApiTest {
         }
     }
 
+    @Test
+    public void test_executor() throws IOException {
+
+        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(Resources.getResourceAsReader("mybatis-config.xml"));
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        IUserMapper mapper = sqlSession.getMapper(IUserMapper.class);
+        User user = mapper.queryUserById(1);
+        LOGGER.info("测试结果:{}",JSON.toJSONString(user));
+    }
+
 }
